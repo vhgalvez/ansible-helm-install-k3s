@@ -1,7 +1,3 @@
-✅ Contenido sugerido para README.md
-markdown
-Copiar
-Editar
 # ⛵ ansible-helm-install-k3s
 
 Automatiza la instalación de Helm en el nodo controlador del clúster K3s utilizando Ansible.
@@ -29,15 +25,13 @@ Este playbook descarga e instala la versión deseada de Helm desde el sitio ofic
 
 ## 📁 Estructura
 
+```plaintext
 ansible-helm-install-k3s/
 ├── inventory/
-│ └── hosts.ini
+│   └── hosts.ini
 ├── playbooks/
-│ └── install_helm.yml
-
-yaml
-Copiar
-Editar
+│   └── install_helm.yml
+```
 
 ---
 
@@ -48,37 +42,51 @@ Editar
 ```bash
 git clone https://github.com/vhgalvez/ansible-helm-install-k3s.git
 cd ansible-helm-install-k3s
-2. Revisar el inventario
-Asegúrate de tener configurado correctamente el archivo inventory/hosts.ini. Ejemplo para localhost:
+```
 
-ini
-Copiar
-Editar
+### 2. Revisar el inventario
+
+Asegúrate de tener configurado correctamente el archivo `inventory/hosts.ini`. Ejemplo para localhost:
+
+```ini
 [localhost]
 127.0.0.1 ansible_connection=local
-3. Ejecutar el playbook
-bash
-Copiar
-Editar
-sudo ansible-playbook -i inventory/hosts.ini playbooks/install_helm.yml
-✅ Resultado esperado
-El binario helm se instalará en:
+```
 
-bash
-Copiar
-Editar
+### 3. Ejecutar el playbook
+
+```bash
+sudo ansible-playbook -i inventory/hosts.ini playbooks/install_helm.yml
+```
+
+### ✅ Resultado esperado
+
+El binario Helm se instalará en:
+
+```plaintext
 /usr/local/bin/helm
+```
+
 Puedes verificarlo con:
 
-bash
-Copiar
-Editar
+```bash
 helm version
-🧠 Autor
-Víctor Hugo Gálvez – GitHub
+```
 
-📄 Licencia
-Este proyecto está licenciado bajo la MIT License
+---
 
-⭐️ ¿Te fue útil?
+## 🧠 Autor
+
+Víctor Hugo Gálvez – [GitHub](https://github.com/vhgalvez)
+
+---
+
+## 📄 Licencia
+
+Este proyecto está licenciado bajo la [MIT License](LICENSE).
+
+---
+
+## ⭐️ ¿Te fue útil?
+
 ¡Dale una estrella al repositorio para apoyar el proyecto!
