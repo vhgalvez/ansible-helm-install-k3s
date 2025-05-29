@@ -1,0 +1,41 @@
+# playbooks\install_helm.yml
+---
+- name:  Preparar nodo controlador con Helm
+  hosts: localhost
+  become: true
+  gather_facts: true
+
+  vars:
+    helm_version: "v3.17.3"
+    helm_path: "/usr/local/bin/helm"
+    helm_install_tmp: "/tmp/helm_install"
+
+  tasks:
+    - name: Crear directorio temporal para instalar Helm
+      file:
+        path: "{{ helm_install_tmp }}"
+        state: directory
+        mode: "0755"
+
+    - name: Descargar Helm {{ helm_version }}
+      get_url:
+        url: "https://get.helm.sh/helm-{{ helm_version }}-linux-amd64.tar.gz"
+        dest: "{{ helm_install_tmp }}/helm.tar.gz"
+
+    - name:  Extraer Helm
+      unarchive:
+        src: "{{ helm_install_tmp }}/helm.tar.gz"
+        dest: "{{ helm_install_tmp }}"
+        remote_src: yes
+
+    - name: Mover Helm a {{ helm_path }}
+      copy:
+        src: "{{ helm_install_tmp }}/linux-amd64/helm"
+        dest: "{{ helm_path }}"
+        remote_src: yes
+        mode: "0755"
+
+    - name:  Borrar temporales de Helm
+      file:
+        path: "{{ helm_install_tmp }}"
+        state: absent
